@@ -5,8 +5,8 @@ import math
 
 Names = ['Abydos','Camelot','Delmak','Gaia','Edasich','Hadante','Tauri','Hadar','Icalurus','Juna','Kheb','Langara','Palilicium']
 Occurence_name = [0]*len(Names)
-NbPlanet = 50
-NbLink = 60
+NbPlanet = 128
+NbLink = 190
 planete = [None]*NbPlanet
 saut = [None]*NbLink
 MaxLink = 3
@@ -99,7 +99,7 @@ for i in range(0, len(saut)):
         while (int(abs(planete[x].distance - planete[y].distance)) > 1) or (x == y):
             y = randint(0, len(planete) - 1)
         for j in range(0, i):
-            if (saut[j].X == x and saut[j].Y == y) or (saut[j].Y == x and saut[j].X == y) or (saut[j].X == y and saut[j].Y == x):
+            while (saut[j].X == x and saut[j].Y == y) or (saut[j].Y == x and saut[j].X == y) or (saut[j].X == y and saut[j].Y == x):
                 x = randint(0, len(planete) - 1)
                 y = randint(0, len(planete) - 1)
                 while (int(abs(planete[x].distance - planete[y].distance)) > 1) or (x == y):
@@ -114,6 +114,9 @@ for i in range(0, len(saut)):
 
     saut[i].description = (str(planete[int(saut[i].X)].printName()) + str(' - ') + str(planete[int(saut[i].Y)].printName()) + str(' : ') + str(saut[i].size))
 
+#AFFICHAGE
+
+
 for i in range(0, len(planete)):
     print('____')
     print ('planete ' + str(planete[i].printName()) + ': ' + str(planete[i].distance))
@@ -124,15 +127,19 @@ for i in range(0, len(planete)):
         else:
             print ('=> --')
 print('____')
-count = 0
+count_iso = 0
+count_pleine = 0
 for i in range(0, len(planete)):
-    if planete[i].linkNumber != 3:
-        count += 1
+    if planete[i].linkNumber == 0:
+        count_iso += 1
+    elif planete[i].linkNumber == 3:
+        count_pleine +=1
 
-print(count)
+print("isolée : " +str(count_iso))
+print("pleine : " +str(count_pleine))
 
-initx = 600
-inity = 600
+initx = 700
+inity = 700
 a = [[None for x in range(2)] for y in range(NbPlanet)]
 c = [None]*NbPlanet
 d = [None]*NbLink
@@ -147,11 +154,11 @@ y = 0
 view = GraphWin("Galaxy View", initx, inity)
 while i <= len(planete):
     while index == planete[i].distance:
-        (x,y)= pol2cart((planete[i].distance*50), angle)
-        a[i] = (initx/2 + x,inity/2 + y)
-        c[i] = Circle(Point(initx/2 + x,inity/2 + y), 10)
+        (x, y)= pol2cart((planete[i].distance*50), angle)
+        a[i] = (initx/2 + x, inity/2 + y)
+        c[i] = Circle(Point(initx/2 + x, inity/2 + y), 10)
         c[i].setOutline('red')
-        Nom[i] = Text(Point(initx/2 + x,inity/2 + y), i)
+        Nom[i] = Text(Point(initx/2 + x, inity/2 + y), i)
         Nom[i].draw(view)
         c[i].draw(view)
         angle += (2*math.pi / Univers[index])
@@ -166,8 +173,8 @@ while i <= len(planete):
 for i in range(0, len(saut)):
     point1 = int(saut[i].X)
     point2 = int(saut[i].Y)
-    d[i] = Line(Point(a[point1][0],a[point1][1]),Point(a[point2][0],a[point2][1]))
+    d[i] = Line(Point(a[point1][0], a[point1][1]), Point(a[point2][0], a[point2][1]))
     d[i].setOutline('green')
     d[i].draw(view)
-view.getMouse() # Pause to view result
-view.close()    # Close window when done
+view.getMouse()
+view.close()
