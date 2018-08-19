@@ -1,11 +1,12 @@
 # pythonGalacTest
 
-##Why?
-
-Just to test some basic algorithm and training in python. 
+## Why?
+Just to test some basic algorithm and training in python.
 Nothing fancy
+
 ----
-##Install
+## Install
+
 Python 3.6 or newer 
 Only dependency needed : numpy
 
