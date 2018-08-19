@@ -1,11 +1,11 @@
 # pythonGalacTest
 
-**Why ?**
+##Why?
+
 Just to test some basic algorithm and training in python. 
 Nothing fancy
-
 ----
-**Instal**
+##Install
 Python 3.6 or newer 
 Only dependency needed : numpy
 
