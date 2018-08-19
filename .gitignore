@@ -1,4 +1,4 @@
-
+.idea/
 .idea/misc.xml
 .idea/modules.xml
 .idea/pythonGalacTest.iml
@@ -8,3 +8,4 @@ __pycache__/graphics.cpython-37.pyc
 .idea/workspace.xml
 .idea/TestEco.iml
 .idea/TestEco.iml
+.idea/workspace.xml
