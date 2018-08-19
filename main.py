@@ -5,8 +5,8 @@ import math
 
 Names = ['Abydos','Camelot','Delmak','Gaia','Edasich','Hadante','Tauri','Hadar','Icalurus','Juna','Kheb','Langara','Palilicium']
 Occurence_name = [0]*len(Names)
-NbPlanet = 150
-NbLink = 20
+NbPlanet = 50
+NbLink = 60
 planete = [None]*NbPlanet
 saut = [None]*NbLink
 MaxLink = 3
@@ -133,7 +133,9 @@ print(count)
 
 initx = 1000
 inity = 1000
+a = [[None for x in range(2)] for y in range(NbPlanet)]
 c = [None]*NbPlanet
+d = [None]*NbLink
 Nom = [None]*NbPlanet
 l = [None]*NbLink
 index = 0
@@ -141,11 +143,14 @@ i = 0
 angle = 0
 x = 0
 y = 0
+
 view = GraphWin("Galaxy View", initx, inity)
 while i <= len(planete):
     while index == planete[i].distance:
         (x,y)= pol2cart((planete[i].distance*50), angle)
+        a[i] = (initx/2 + x,inity/2 + y)
         c[i] = Circle(Point(initx/2 + x,inity/2 + y), 10)
+        c[i].setOutline('red')
         Nom[i] = Text(Point(initx/2 + x,inity/2 + y), i)
         Nom[i].draw(view)
         c[i].draw(view)
@@ -158,5 +163,11 @@ while i <= len(planete):
         break
     index += 1
     angle = 0
+for i in range(0, len(saut)):
+    point1 = int(saut[i].X)
+    point2 = int(saut[i].Y)
+    d[i] = Line(Point(a[point1][0],a[point1][1]),Point(a[point2][0],a[point2][1]))
+    d[i].setOutline('green')
+    d[i].draw(view)
 view.getMouse() # Pause to view result
 view.close()    # Close window when done
