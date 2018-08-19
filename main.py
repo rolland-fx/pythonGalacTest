@@ -131,8 +131,8 @@ for i in range(0, len(planete)):
 
 print(count)
 
-initx = 1000
-inity = 1000
+initx = 600
+inity = 600
 a = [[None for x in range(2)] for y in range(NbPlanet)]
 c = [None]*NbPlanet
 d = [None]*NbLink
